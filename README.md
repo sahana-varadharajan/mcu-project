@@ -59,11 +59,16 @@ TMDB Plot Summary → Claude API → Character Extraction → Manual Validation 
 
 ## NEXT PHASES
 
-**Phase 3:** SQL + Data Modeling
-- Load relationships into MySQL Workbench 8.0 CE
-- Build character network schema
-- Compute character importance scores
-- Analyze continuity load trends
+## PHASE 3: SQL & ANALYSIS ⏳ IN PROGRESS
+
+### Approach
+1. Load character relationships into MySQL database
+2. Design normalized schema (movies, characters, relationships)
+3. Query to find:
+   - Most important characters (by appearance count)
+   - Relationship complexity per film
+   - Character networks and clusters
+   - Continuity load trends
 
 **Phase 4:** Analysis & Visualization
 - Tableau dashboard: Character importance by film
