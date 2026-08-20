@@ -59,8 +59,8 @@ TMDB Plot Summary → Claude API → Character Extraction → Manual Validation 
 
 ## NEXT PHASES
 
-**Phase 3 (STARTING MONDAY):** SQL + Data Modeling
-- Load relationships into PostgreSQL
+**Phase 3:** SQL + Data Modeling
+- Load relationships into MySQL Workbench 8.0 CE
 - Build character network schema
 - Compute character importance scores
 - Analyze continuity load trends
@@ -81,9 +81,10 @@ TMDB Plot Summary → Claude API → Character Extraction → Manual Validation 
 - **Data Collection:** Python (requests, pandas)
 - **APIs:** TMDB (free tier), Claude (LLM enrichment)
 - **Data Validation:** Python cleaning scripts
-- **Analysis:** SQL + Python
-- **Visualization:** Tableau + Plotly
-- **Automation:** n8n
+- **Database:** MySQL (Workbench 8.0 CE)
+- **Analysis:** SQL queries + Python pandas
+- **Visualization:** Tableau + Plotly (Phase 4)
+- **Automation:** n8n (Phase 5)
 - **Version Control:** GitHub
 
 ---
@@ -136,11 +137,11 @@ This project demonstrates:
 
 | Phase | Status | Target |
 |---|---|---|
-| Phase 1: Data Collection | ✅ Complete | ✅ Aug 12-13 |
-| Phase 2: Character Extraction | ✅ Complete | ✅ Aug 13-17 |
-| Phase 3: SQL + Analysis | ⬜ In Progress | ⏳ Aug 18-22 |
-| Phase 4: Visualization | ⬜ Not Started | ⏳ Aug 23-28 |
-| Phase 5: Polish + Deploy | ⬜ Not Started | ⏳ Aug 29-Sept 4 |
+| Phase 1: Data Collection | ✅ Complete |
+| Phase 2: Character Extraction | ✅ Complete |
+| Phase 3: SQL + Analysis | ⬜ In Progress |
+| Phase 4: Visualization | ⬜ Not Started |
+| Phase 5: Polish + Deploy | ⬜ Not Started |
 | **Launch** | - | **✅ Sept 5, 2026** |
 
 ---
