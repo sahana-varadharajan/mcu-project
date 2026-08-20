@@ -40,10 +40,23 @@ A data-driven tool to understand MCU character connections and watch-order recom
 ### Extraction Process
 TMDB Plot Summary → Claude API → Character Extraction → Manual Validation → CSV
 
+
 ### Data Quality & Validation
 - **Automated:** LLM extraction + duplicate removal + non-character filtering
 - **Manual:** Added critical multiverse relationships (Spider-Man variants, Doctor Strange variants, Loki interactions)
 - **Quality:** ~95% accuracy for main cast relationships
+
+### Data Files
+- `character_relationships_phase2_complete.csv` — 124 validated relationships
+- **Columns:** `media_type | title | character_1 | character_2 | relationship | description | order | source`
+  - `media_type` — Movie or TV Series
+  - `title` — Film/show name
+  - `character_1` — First character
+  - `character_2` — Second character
+  - `relationship` — Type: ally/enemy/mentor/romantic/colleague/family
+  - `description` — Why they have this relationship
+  - `order` — Release order
+  - `source` — LLM (automated extraction) or Manual (human validation)
 
 ### Known Limitations
 1. **Loki (TV):** Only 4 relationships extracted (thin coverage of TVA agents/interactions)
@@ -51,31 +64,42 @@ TMDB Plot Summary → Claude API → Character Extraction → Manual Validation 
 3. **New Films:** Captain America: Brave New World relationships may need expansion as plot details evolve
 4. **Secondary Characters:** Focused on main cast (top 6-8 per film)
 
-### Data Files
-- `character_relationships_phase2_complete.csv` — 124 validated relationships
-- Columns: `media_type | title | character_1 | character_2 | relationship | description`
-
 ---
 
-## NEXT PHASES
-
-## PHASE 3: SQL & ANALYSIS ⏳ IN PROGRESS
+## PHASE 3: SQL & DATA ANALYSIS ⏳ IN PROGRESS
 
 ### Approach
 1. Load character relationships into MySQL database
 2. Design normalized schema (movies, characters, relationships)
 3. Query to find:
-   - Most important characters (by appearance count)
-   - Relationship complexity per film
+   - Most important characters (by appearance/relationship count)
+   - Relationship complexity per film (continuity load)
    - Character networks and clusters
-   - Continuity load trends
+   - Relationship type breakdown (ally vs enemy patterns)
 
-**Phase 4:** Analysis & Visualization
-- Tableau dashboard: Character importance by film
-- Plotly network graph: Relationship mappings
+### Tools
+- **Database:** MySQL (Workbench 8.0 CE)
+- **Query Language:** SQL
+- **Data Processing:** Python pandas (for data loading)
+
+### Target Completion
+- Thu Aug 22: Database schema + data loading ✅
+- Fri Aug 23: SQL queries + analysis
+- Sat Aug 24: Insights document
+
+---
+
+## PHASE 4: VISUALIZATION ⬜ NOT STARTED
+
+**Tableau dashboard or Plotly network graph showing:**
+- Character importance rankings
+- Relationship networks
 - Watch-order recommendations
 
-**Phase 5:** Automation & Polish
+---
+
+## PHASE 5: AUTOMATION & POLISH ⬜ NOT STARTED
+
 - n8n workflow for weekly data refresh
 - Deploy interactive web tool
 
@@ -86,9 +110,9 @@ TMDB Plot Summary → Claude API → Character Extraction → Manual Validation 
 - **Data Collection:** Python (requests, pandas)
 - **APIs:** TMDB (free tier), Claude (LLM enrichment)
 - **Data Validation:** Python cleaning scripts
-- **Database:** MySQL (Workbench 8.0 CE)
+- **Database:** MySQL Workbench 8.0 CE
 - **Analysis:** SQL queries + Python pandas
-- **Visualization:** Tableau + Plotly (Phase 4)
+- **Visualization:** Tableau or Plotly (Phase 4)
 - **Automation:** n8n (Phase 5)
 - **Version Control:** GitHub
 
@@ -96,12 +120,35 @@ TMDB Plot Summary → Claude API → Character Extraction → Manual Validation 
 
 ## HOW TO USE
 
-```bash
-# View the extracted relationships
-cat character_relationships_phase2_complete.csv
+### Prerequisites
+- MySQL Server + Workbench 8.0 CE
+- Python 3.8+ (with pandas, mysql-connector-python)
 
-# Phase 3: Load into PostgreSQL
-python load_to_postgres.py
+### Setup
+```bash
+# 1. Create database
+mysql -u root -p < setup.sql
+
+# 2. Load data (Phase 3 - in progress)
+python load_data.py
+
+# 3. Run analysis queries
+# See Phase 3 for SQL queries
+```
+
+### Query Examples
+```sql
+-- Most important characters
+SELECT character_name, COUNT(*) as appearance_count
+FROM relationships
+GROUP BY character_name
+ORDER BY appearance_count DESC
+LIMIT 10;
+
+-- Relationship types breakdown
+SELECT relationship_type, COUNT(*) as count
+FROM relationships
+GROUP BY relationship_type;
 ```
 
 ---
@@ -134,23 +181,24 @@ This project demonstrates:
 - LLM usage for data enrichment
 - Data quality & validation thinking
 - Pragmatic engineering (good-enough data > perfect)
-- SQL + analysis skills (Phase 3+)
+- **SQL & data analysis skills** (Phase 3+)
+- Data visualization & storytelling (Phase 4+)
 
 ---
 
 ## STATUS
 
-| Phase | Status | Target |
+| Phase | Status | Dates |
 |---|---|---|
-| Phase 1: Data Collection | ✅ Complete |
-| Phase 2: Character Extraction | ✅ Complete |
-| Phase 3: SQL + Analysis | ⬜ In Progress |
-| Phase 4: Visualization | ⬜ Not Started |
-| Phase 5: Polish + Deploy | ⬜ Not Started |
-| **Launch** | - | **✅ Sept 5, 2026** |
+| Phase 1: Data Collection | ✅ Complete | Aug 12-13 |
+| Phase 2: Character Extraction | ✅ Complete | Aug 13-17 |
+| Phase 3: SQL + Analysis | ⏳ In Progress | Aug 20-23 |
+| Phase 4: Visualization | ⬜ Not Started | Aug 24-28 |
+| Phase 5: Polish + Deploy | ⬜ Not Started | Aug 29-Sept 4 |
+| **LAUNCH** | - | **Sept 5, 2026** |
 
 ---
 
 **Author:** Sahana Varadharajan  
-**Started:** Aug 12, 2026  
-**Last Updated:** Aug 18, 2026
+**Project Start:** Aug 12, 2026  
+**Last Updated:** Aug 20, 2026
