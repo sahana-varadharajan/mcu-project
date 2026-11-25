@@ -190,15 +190,12 @@ This project demonstrates:
 
 | Phase | Status | Dates |
 |---|---|---|
-| Phase 1: Data Collection | ✅ Complete | Aug 12-13 |
-| Phase 2: Character Extraction | ✅ Complete | Aug 13-17 |
-| Phase 3: SQL + Analysis | ⏳ In Progress | Aug 20-23 |
-| Phase 4: Visualization | ⬜ Not Started | Aug 24-28 |
-| Phase 5: Polish + Deploy | ⬜ Not Started | Aug 29-Sept 4 |
-| **LAUNCH** | - | **Sept 5, 2026** |
+| Phase 1: Data Collection | ✅ Complete |
+| Phase 2: Character Extraction | ✅ Complete |
+| Phase 3: SQL + Analysis | ⏳ In Progress |
+| Phase 4: Visualization | ⬜ Not Started |
+| Phase 5: Polish + Deploy | ⬜ Not Started |
 
 ---
 
 **Author:** Sahana Varadharajan  
-**Project Start:** Aug 12, 2026  
-**Last Updated:** Aug 20, 2026
